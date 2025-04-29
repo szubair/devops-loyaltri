@@ -1,2 +1,2 @@
 # devops-loyaltri
-This is develop terraform script
+This is to develop terraform code!!
