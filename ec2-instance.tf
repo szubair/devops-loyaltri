@@ -1,20 +1,24 @@
-provider "aws" {
- region = "us-west-2"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
+    }
+  }
+
+  required_version = ">= 1.2.0"
 }
 
-module "ec2_instance" {
-  source = "git@github.com:szubair/terraform-ec2-instance.git"
+provider "aws" {
+ region = "ap-south-1"
+}
 
-  name = "loyaltri-fe-instance"
-
-  instance_type          = "t2.micro"
-  key_name               = "user1"
-  monitoring             = true
-  vpc_security_group_ids = ["sg-12345678"]
-  subnet_id              = "subnet-eddcdzz4"
+resource "aws_instance" "myapp_server" {
+  ami           = "ami-0e35ddab05955cf57"
+  instance_type = "t2.micro"
 
   tags = {
-    Terraform   = "true"
-    Environment = "dev"
+    Name = "ExampleAppServerInstance"
   }
 }
+
