@@ -18,7 +18,7 @@ resource "aws_instance" "myapp_server" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = var.instance_name
   }
 }
 
